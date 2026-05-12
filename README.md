@@ -60,12 +60,6 @@ pip install -r requirements.txt
 ```bash
 # run main program
 python main.py
-
-# generate report pdf
-python scripts/md_to_pdf.py
-
-# run tests
-pytest
 ```
 
 ---
@@ -73,7 +67,7 @@ pytest
 ## project structure
 
 ```
-.
+cisc-856-assignment-1/
 ├── main.py                # main execution
 ├── README.md              
 ├── requirements.txt       # dependencies
