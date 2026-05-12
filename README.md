@@ -1,100 +1,124 @@
-# base product
+# cisc 856 assignment 1: implementing and analyzing a basic rl algorithm
 
-[![github](https://img.shields.io/badge/GitHub-sentiment__sleuth-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/elsayedelmandoh/sentiment-sleuth)
-[![huggingface](https://img.shields.io/badge/Space-Hugging%20Face-yellow?style=for-the-badge&logo=huggingface&logoColor=black)](https://elsayedelmandoh-sentiment-sleuth.hf.space)
-[![Twitter](https://img.shields.io/badge/X-1DA1F2?style=for-the-badge&logo=x&logoColor=white)](https://x.com/aangpy)
-[![linkedin](https://img.shields.io/badge/elsayed-linkedin-0077b5?style=for-the-badge&logo=linkedin&logocolor=white)](https://www.linkedin.com/in/elsayed-elmandoh-b5849a1b8/)
-[![linkedin](https://img.shields.io/badge/post-linkedin-0077b5?style=for-the-badge&logo=linkedin&logocolor=white)]()
+elsayed elmandouh - 20596379 - cisc 856 assignment 1 - reinforcement learning - queen's university
 
-<p align="center">
-  <img src="docs/results/res1.png" alt="project name — pos results" width="45%">
-  &nbsp; &nbsp;
-  <img src="docs/results/res2.png" alt="project name — neg results" width="45%">
-</p>
+## table of contents
 
+- [overview](#overview)
+- [setup](#setup)
+- [usage](#usage)
+- [project structure](#project-structure)
+- [results](#results)
+- [author](#author)
 
-how to adapt this template
+---
 
-1. replace the project name, problem statement, and goal.
-2. define the dataset and constraints before implementation.
-3. move repeatable logic out of notebooks and into `src/`.
-4. keep tests small, deterministic, and focused on the critical path.
+## overview
 
+this project implements a 5x5 gridworld markov decision process (mdp) solved using three approaches:
 
-## Table of Contents
-- [Overview](#overview)
-- [Key Features](#key-features)
-- [Setup](#setup)
-  - [0. Prerequisites](#0-prerequisites)
-  - [1. Clone the Repository](#1-clone-the-repository) 
-  - [2. Create Conda Environment](#2-create-conda-environment) 
-  - [3. Environment Variables](#3-environment-variables) 
-- [Usage](#usage) 
-- [Contributing](#contributing)
-- [Author](#author)
+- **linear system solver**: closed-form solution for deterministic case
+- **value iteration**: iterative bellman optimality algorithm
+- **policy iteration**: alternating evaluation and improvement
 
+### problem parameters
 
-## Overview
-- hook/problem 
-- goal 
-- solution/aha moment
-- Results
+| parameter | value |
+|-----------|-------|
+| grid size | 5x5 |
+| goal | cell 14 (+5.0) |
+| dangers | cells 2, 18, 21 (-5.0) |
+| blocked | cells 6, 7, 11, 12 |
+| discount factors | 0.75, 0.95 |
+| noise levels | 0.0, 0.2 |
 
+---
 
-## Key Features
-* **Feature 1:** Description of feature.
-* **Feature 2:** Description of feature.
-* **Feature 3:** Description of feature.
+## setup
 
-
-## Setup
-0. Prerequisites
-Before running this project, ensure you have the following installed:
-* [Git](https://git-scm.com/)
-* [Anaconda](https://www.anaconda.com/) or Miniconda
-* Python 3.12 (recommended)
-* Valid API Keys (if applicable)
-
-1. Clone the Repository
 ```bash
-git clone https://github.com/elsayedelmandoh/project-name
-cd project-name
-```
+# clone repository
+git clone https://github.com/elsayedelmandoh/cisc-856-assignment-1
+cd cisc-856-assignment-1
 
-2. Create Conda Environment
-```bash
-# Create & activate the environment
-conda create -n envname python=3.12 -y
-conda activate envname
+# create environment
+conda create -n cisc856 python=3.12 -y
+conda activate cisc856
 
-# Install pip and project dependencies
-conda install pip -y
+# install dependencies
 pip install -r requirements.txt
 ```
 
-3. Environment Variables
-Create a `.env` file at the project root and add your necessary API keys or configuration variables:
+---
+
+## usage
+
 ```bash
-# Example .env file
-API_KEY=your_api_key_here
+# run main program
+python main.py
+
+# generate report pdf
+python scripts/md_to_pdf.py
+
+# run tests
+pytest
 ```
 
-## Usage
-To run the application locally, execute the following command:
-```bash
-python app.py
+---
+
+## project structure
+
 ```
-Once running, open the local URL printed in your terminal
+.
+├── main.py                # main execution
+├── README.md              
+├── requirements.txt       # dependencies
+├── .env.example           # configuration
+├── .gitignore             
+├── src/
+│   ├── utils/
+│   │   ├── gridworld.py   # mdp class
+│   │   ├── helpers.py     # vi/pi algorithms
+│   │   └── actions.py     # action definitions
+│   └── config/
+│       └── settings.py    # config loader
+├── notebooks/
+│   └── 01-assignment-1-code-snippet.ipynb
+└── docs/
+    ├── 01-assignment/     # assignment
+    ├── 02-results/        # visualizations
+    └── 03-deliverables/
+        └── 01-report.md
+```
 
-## Contributing
-Contributions are welcome! If you'd like to improve this project, please follow these steps:
-1. Fork the repository.
-2. Create a branch for your feature or bug fix (git checkout -b feature/my-new-feature).
-3. Commit your changes with clear messages (git commit -m 'add some feature').
-4. Push to your fork (git push origin feature/my-new-feature)
-5. Open a pull request.
+---
 
+## results
 
-## Author
-Elsayed Elmandoh - NLP Engineer 
-* Connect on LinkedIn & X [Linktree](https://linktr.ee/elsayedelmandoh)
+### convergence summary
+
+| algorithm | configuration | iterations |
+|-----------|---------------|------------|
+| linear solver | γ=0.95, noise=0.0 | 1 |
+| linear solver | γ=0.75, noise=0.0 | 1 |
+| value iteration | γ=0.95, noise=0.0 | 12 |
+| value iteration | γ=0.75, noise=0.0 | 12 |
+| value iteration | γ=0.95, noise=0.2 | 15 |
+| value iteration | γ=0.75, noise=0.2 | 7 |
+| policy iteration | γ=0.95, noise=0.0 | 10 |
+
+### value iteration output (γ=0.95, noise=0.0)
+
+```
+  3.15   2.99  -5.00   4.51   4.75
+  3.32   ----   ----   4.75   5.00
+  3.49   ----   ----   5.00   goal
+  3.68   3.87   4.07  -5.00   5.00
+  3.49  -5.00   4.29   4.51   4.75
+```
+
+## author
+
+elsayed elmandoh - nlp engineer
+
+* connect on linkedin and x - [linktree](https://linktr.ee/elsayedelmandoh)
