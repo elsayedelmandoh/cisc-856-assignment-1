@@ -115,6 +115,20 @@ cisc-856-assignment-1/
   3.49  -5.00   4.29   4.51   4.75
 ```
 
+### visualizations
+
+![linear solver γ=0.95](docs/02-results/linear_solver_gamma0.95_noise0.0.png)
+![linear solver γ=0.75](docs/02-results/linear_solver_gamma0.75_noise0.0.png)
+
+![value iteration γ=0.95 noise=0.0](docs/02-results/vi_gamma0.95_noise0.0.png)
+![value iteration γ=0.95 noise=0.2](docs/02-results/vi_gamma0.95_noise0.2.png)
+
+![value iteration γ=0.75 noise=0.0](docs/02-results/vi_gamma0.75_noise0.0.png)
+![value iteration γ=0.75 noise=0.2](docs/02-results/vi_gamma0.75_noise0.2.png)
+
+![policy iteration](docs/02-results/pi_gamma0.95_noise0.0.png)
+![optimal policy](docs/02-results/optimal_policy_gamma0.95.png)
+
 ## author
 
 elsayed elmandoh - nlp engineer

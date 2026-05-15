@@ -76,6 +76,8 @@ alternates: policy evaluation (v = r + γpv) and policy improvement (π(s) = arg
  -2.37  -5.00  -2.71  -2.34  -0.75
 ```
 
+![linear solver γ=0.75](../02-results/linear_solver_gamma0.75_noise0.0.png)
+
 ### 5.2 value iteration
 
 | configuration | iterations |
@@ -94,7 +96,7 @@ alternates: policy evaluation (v = r + γpv) and policy improvement (π(s) = arg
   3.49  -5.00   4.29   4.51   4.75
 ```
 
-![value iteration γ=0.95 noise=0.0](docs/02-results/vi_gamma0.95_noise0.0.png)
+![value iteration γ=0.95 noise=0.0](../02-results/vi_gamma0.95_noise0.0.png)
 
 **γ=0.95, noise=0.2:**
 ```
@@ -105,7 +107,29 @@ alternates: policy evaluation (v = r + γpv) and policy improvement (π(s) = arg
   0.23  -5.00   2.09   2.90   3.84
 ```
 
-![value iteration γ=0.95 noise=0.2](docs/02-results/vi_gamma0.95_noise0.2.png)
+![value iteration γ=0.95 noise=0.2](../02-results/vi_gamma0.95_noise0.2.png)
+
+**γ=0.75, noise=0.0:**
+```
+  0.38   0.28  -5.00   2.81   3.75
+  0.50   ----   ----   3.75   5.00
+  0.67   ----   ----   5.00   goal
+  0.89   1.19   1.58  -5.00   5.00
+  0.67  -5.00   2.11   2.81   3.75
+```
+
+![value iteration γ=0.75 noise=0.0](../02-results/vi_gamma0.75_noise0.0.png)
+
+**γ=0.75, noise=0.2:**
+```
+ -0.02  -0.39  -5.00   1.81   3.12
+ -0.00   ----   ----   3.17   4.54
+ -0.00   ----   ----   4.03   goal
+ -0.04  -0.39  -0.08  -5.00   4.00
+ -0.40  -5.00   0.51   1.40   2.74
+```
+
+![value iteration γ=0.75 noise=0.2](../02-results/vi_gamma0.75_noise0.2.png)
 
 ### 5.3 policy iteration
 
@@ -118,8 +142,8 @@ alternates: policy evaluation (v = r + γpv) and policy improvement (π(s) = arg
   3.49  -5.00   4.29   4.51   4.75
 ```
 
-![policy iteration](docs/02-results/pi_gamma0.95_noise0.0.png)
-![optimal policy](docs/02-results/optimal_policy_gamma0.95.png)
+![policy iteration](../02-results/pi_gamma0.95_noise0.0.png)
+![optimal policy](../02-results/optimal_policy_gamma0.95.png)
 
 ### 5.4 optimal policy map
 
@@ -157,7 +181,7 @@ alternates: policy evaluation (v = r + γpv) and policy improvement (π(s) = arg
 
 all three produce correct results; vi and pi reach identical optimal policy.
 
-![linear solver γ=0.95](docs/02-results/linear_solver_gamma0.95_noise0.0.png)
+![linear solver γ=0.95](../02-results/linear_solver_gamma0.95_noise0.0.png)
 
 
 **references**: sutton & barto (2018) reinforcement learning: an introduction - https://web.stanford.edu/class/psych209/Readings/SuttonBartoIPRLBook2ndEd.pdf
